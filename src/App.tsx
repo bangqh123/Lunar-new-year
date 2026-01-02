@@ -6,7 +6,7 @@ import { useTetAnimation } from "./hooks/useTetAnimation"
 import { FallingItems } from "./components/FallingItems"
 import { getGreetingFromEncodedURL } from "./utils/greeting"
 
-const TARGET_TIME = new Date("2026-01-02T19:59:00+07:00").getTime()
+const TARGET_TIME = new Date("2026-01-02T21:08:00+07:00").getTime()
 
 export default function App() {
   const greeting = getGreetingFromEncodedURL()
@@ -15,6 +15,13 @@ export default function App() {
   const { startFireworks, } = useFireworks()
   const { playMusic, toggleMusic, isPlaying } = useTetMusic("/musics/tet.mp3")
   const { isActive, startAnimation } = useTetAnimation()
+
+  useCelebrateTrigger({
+    isFinished: countdown.isFinished,
+    onFireworks: startFireworks,
+    onPlayMusic: playMusic,
+    onStartAnimation: startAnimation
+  })
 
   useCelebrateTrigger({
     isFinished: countdown.isFinished,
