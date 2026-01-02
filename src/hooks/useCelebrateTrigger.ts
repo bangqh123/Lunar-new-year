@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react"
 
-interface UseCelebrateTriggerProps {
+interface Props {
   isFinished: boolean
-  onFireworks: () => void
-  onPlayMusic: () => void
-  onStartAnimation: () => void
+  onFireworks?: () => void
+  onPlayMusic?: () => void
+  onStartAnimation?: () => void
 }
 
 export function useCelebrateTrigger({
@@ -12,14 +12,16 @@ export function useCelebrateTrigger({
   onFireworks,
   onPlayMusic,
   onStartAnimation
-}: UseCelebrateTriggerProps) {
+}: Props) {
   const triggered = useRef(false)
 
   useEffect(() => {
     if (!isFinished || triggered.current) return
+
     triggered.current = true
-    onFireworks()
-    onPlayMusic()
-    onStartAnimation()
+
+    onFireworks?.()
+    onPlayMusic?.()
+    onStartAnimation?.()
   }, [isFinished, onFireworks, onPlayMusic, onStartAnimation])
 }

@@ -1,26 +1,37 @@
-import { useRef } from "react"
 import confetti from "canvas-confetti"
+import { useRef } from "react"
 
 export function useFireworks() {
-  const ref = useRef<number | null>(null)
-
-  const fire = () =>
-    confetti({
-      particleCount: 80,
-      spread: 120,
-      origin: { x: Math.random(), y: Math.random() * 0.5 }
-    })
+  const firedRef = useRef(false)
 
   const startFireworks = () => {
-    if (ref.current) return
-    fire()
-    ref.current = window.setInterval(fire, 700)
+    if (firedRef.current) return
+    firedRef.current = true
+
+    const duration = 6 * 1000
+    const end = Date.now() + duration
+
+    const frame = () => {
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+      })
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+      })
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame)
+      }
+    }
+
+    frame()
   }
 
-  const stopFireworks = () => {
-    if (ref.current) clearInterval(ref.current)
-    ref.current = null
-  }
-
-  return { startFireworks, stopFireworks }
+  return { startFireworks }
 }
