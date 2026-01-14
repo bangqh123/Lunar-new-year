@@ -2,7 +2,11 @@
 
 body {
   all: unset;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
   overflow-x: hidden;
+  place-items: center;
   scroll-behavior: smooth;
 }
 
@@ -10,7 +14,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -22,12 +26,4 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  min-width: 320px;
-  min-height: 100vh;
-  place-items: center;
 }
