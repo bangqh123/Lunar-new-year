@@ -5,16 +5,17 @@ interface BoxtimeProps {
   label: string
 }
 
-const Boxtime = ({ time, label }: BoxtimeProps) => {
+const Boxtime: React.FC<BoxtimeProps> = ({ time, label }) => {
   return (
     <div className="time-box">
-      <span className="time-value">
-        {time.toString().padStart(2, "0")}
-      </span>
-      <span className="time-label">{label}</span>
+      <div className="time-glow"></div>
+      <div className="time-content">
+        <div className="time-number">{time}</div>
+        <div className="time-label">{label}</div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Boxtime
 
