@@ -2,12 +2,6 @@ import "./BackGround.scss"
 
 import React from "react"
 
-import { useCountdown } from "../../../hooks/useCountdown"
-import { useCelebrateTrigger } from "../../../hooks/useCelebrateTrigger"
-import { useFireworks } from "../../../hooks/useFireworks"
-import { useTetAnimation } from "../../../hooks/useTetAnimation"
-
-
 import khung from "./../../../assets/images/khung.png"
 import phao from "./../../../assets/images/phao.png"
 import hoa from "./../../../assets/images/mai.png"
@@ -16,22 +10,16 @@ import ngua from "./../../../assets/images/ngua.png"
 import Boxtime from "./../../../components/Boxtime/Boxtime"
 
 interface TBackGroundProps {
-    TARGET_TIME: number;
-
+    countdown: {
+        days: number;
+        hours: number;
+        minutes: number;
+        seconds: number;
+        isFinished: boolean;
+    };
 }
 
-const BackGround: React.FC<TBackGroundProps> = ({ TARGET_TIME }) => {
-    const countdown = useCountdown(TARGET_TIME)
-
-    const { startFireworks } = useFireworks()
-    const { startAnimation } = useTetAnimation()
-
-    useCelebrateTrigger({
-        isFinished: countdown.isFinished,
-        onFireworks: startFireworks,
-        onStartAnimation: startAnimation,
-    })
-
+const BackGround: React.FC<TBackGroundProps> = ({ countdown }) => {
     return (
         <div className="background">
             <div className="firework-particles"></div>

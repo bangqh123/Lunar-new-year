@@ -1,6 +1,6 @@
 import "./styles/index.scss"
 
-import { StrictMode, lazy } from "react"
+import { StrictMode, lazy, Suspense } from "react"
 import { createRoot } from "react-dom/client"
 import {
   createBrowserRouter,
@@ -10,13 +10,18 @@ import {
 } from "react-router-dom"
 
 const CountDown = lazy(() => import("./pages/countdowns/CountDown"))
-const TestPage = lazy(() => import("./pages/countdowns/background/BackGround"))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<CountDown />} />
-      <Route path="/test" element={<TestPage />} />
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={null}>
+            <CountDown />
+          </Suspense>
+        }
+      />
     </>
   )
 )
