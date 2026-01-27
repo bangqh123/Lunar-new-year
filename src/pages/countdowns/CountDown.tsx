@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 import { useCountdown } from "../../hooks/useCountdown"
 import { useCelebrateTrigger } from "../../hooks/useCelebrateTrigger"
 
-const TARGET_TIME = new Date("2026-01-26T22:38:00+07:00").getTime()
+const TARGET_TIME = new Date("2026-01-28T22:50:00+07:00").getTime()
 
 const CountDown = () => {
   const countdown = useCountdown(TARGET_TIME)
@@ -34,12 +34,30 @@ const CountDown = () => {
     }
   }, [countdown.isFinished, navigate])
 
+  useEffect(() => {
+  const unlockAudio = () => {
+    const synth = window.speechSynthesis
+    const utter = new SpeechSynthesisUtterance("")
+    synth.speak(utter)
+    document.removeEventListener("click", unlockAudio)
+    document.removeEventListener("keydown", unlockAudio)
+  }
+
+  document.addEventListener("click", unlockAudio)
+  document.addEventListener("keydown", unlockAudio)
+
+  return () => {
+    document.removeEventListener("click", unlockAudio)
+    document.removeEventListener("keydown", unlockAudio)
+  }
+}, [])
+
 
   return (
     <div className="countdown">
-      {totalSeconds > 20 && <BG_CTD countdown={countdown} />}
+      {totalSeconds > 10 && <BG_CTD countdown={countdown} />}
 
-      {totalSeconds <= 20 && !countdown.isFinished && (
+      {totalSeconds <= 10 && !countdown.isFinished && (
         <Final_CTD countdown={countdown} />
       )}
 
