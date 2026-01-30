@@ -12,7 +12,7 @@ class Star {
 
   constructor(cx: number, cy: number, ctx: CanvasRenderingContext2D) {
     const angle = Math.random() * Math.PI * 2
-    const speed = Math.random() * 6 + 2
+    const speed = Math.random() * 3 + 1
 
     this.x = cx
     this.y = cy
@@ -72,13 +72,13 @@ const SpaceWarpBackground = () => {
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       // glow core
-      const glow = ctx.createRadialGradient(cx(), cy(), 0, cx(), cy(), 300)
+      const glow = ctx.createRadialGradient(cx(), cy(), 0, cx(), cy(), 200)
       glow.addColorStop(0, "rgba(180,180,255,0.15)")
       glow.addColorStop(1, "rgba(0,0,0,0)")
       ctx.fillStyle = glow
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      spawn(4)
+      spawn(1)
 
       for (let i = stars.length - 1; i >= 0; i--) {
         const s = stars[i]

@@ -10,6 +10,8 @@ import {
 } from "react-router-dom"
 
 const CountDown = lazy(() => import("./pages/countdowns/CountDown"))
+const Firework = lazy(() => import("./pages/fireworks/Firework"))
+const WishPage = lazy(() => import("./pages/wishs/WishPage"))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +21,22 @@ const router = createBrowserRouter(
         element={
           <Suspense fallback={null}>
             <CountDown />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/fireworks"
+        element={
+          <Suspense fallback={null}>
+            <Firework />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/wishs"
+        element={
+          <Suspense fallback={null}>
+            <WishPage />
           </Suspense>
         }
       />

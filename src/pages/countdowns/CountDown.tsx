@@ -1,7 +1,7 @@
 import "./CountDown.scss"
 
-import BG_CTD from "./background/BackGround"
-import Final_CTD from "./finalcountdown/FinalCountDown"
+import BG_CTD from "./paritals/background/BackGround"
+import Final_CTD from "./paritals/finalcountdown/FinalCountDown"
 
 import { useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 import { useCountdown } from "../../hooks/useCountdown"
 import { useCelebrateTrigger } from "../../hooks/useCelebrateTrigger"
 
-const TARGET_TIME = new Date("2026-01-28T22:50:00+07:00").getTime()
+const TARGET_TIME = new Date("2026-01-30T22:40:00+07:00").getTime()
 
 const CountDown = () => {
   const countdown = useCountdown(TARGET_TIME)
@@ -27,7 +27,7 @@ const CountDown = () => {
     countdown.minutes * 60 +
     countdown.seconds
 
-     useEffect(() => {
+  useEffect(() => {
     if (countdown.isFinished && !redirectedRef.current) {
       redirectedRef.current = true
       navigate("/fireworks")
@@ -35,22 +35,22 @@ const CountDown = () => {
   }, [countdown.isFinished, navigate])
 
   useEffect(() => {
-  const unlockAudio = () => {
-    const synth = window.speechSynthesis
-    const utter = new SpeechSynthesisUtterance("")
-    synth.speak(utter)
-    document.removeEventListener("click", unlockAudio)
-    document.removeEventListener("keydown", unlockAudio)
-  }
+    const unlockAudio = () => {
+      const synth = window.speechSynthesis
+      const utter = new SpeechSynthesisUtterance("")
+      synth.speak(utter)
+      document.removeEventListener("click", unlockAudio)
+      document.removeEventListener("keydown", unlockAudio)
+    }
 
-  document.addEventListener("click", unlockAudio)
-  document.addEventListener("keydown", unlockAudio)
+    document.addEventListener("click", unlockAudio)
+    document.addEventListener("keydown", unlockAudio)
 
-  return () => {
-    document.removeEventListener("click", unlockAudio)
-    document.removeEventListener("keydown", unlockAudio)
-  }
-}, [])
+    return () => {
+      document.removeEventListener("click", unlockAudio)
+      document.removeEventListener("keydown", unlockAudio)
+    }
+  }, [])
 
 
   return (
@@ -60,10 +60,6 @@ const CountDown = () => {
       {totalSeconds <= 10 && !countdown.isFinished && (
         <Final_CTD countdown={countdown} />
       )}
-
-      {/* {countdown.isFinished && (
-        <div className="celebrate-layer" />
-      )} */}
     </div>
   )
 }

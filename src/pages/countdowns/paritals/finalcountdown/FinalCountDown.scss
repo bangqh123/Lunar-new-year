@@ -6,8 +6,7 @@
     position: absolute;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
-
+    justify-content: center;   
     background:
         radial-gradient(circle at center,
             #1b1f45 0%,
@@ -18,7 +17,7 @@
         width: 220%;
         height: 220%;
         position: absolute;
-        
+
         background: radial-gradient(circle,
                 rgba(120, 160, 255, 0.12),
                 rgba(120, 160, 255, 0.04),
@@ -29,31 +28,19 @@
 
     .count {
         z-index: 2;
-        width: 300px;
-        height: 300px;
         display: flex;
         border-radius: 50%;
         align-items: center;
         justify-content: center;
 
-        background:
-            radial-gradient(circle at center,
-                rgba(20, 20, 40, 0.85) 25%,
-                rgba(10, 10, 25, 0.65) 50%,
-                rgba(5, 5, 15, 0.35) 75%,
-                rgba(0, 0, 0, 0) 100%);
-        backdrop-filter: blur(8px);
-
-
         .count-number {
-            font-weight: 900;
-            font-size: 180px;
+            font-weight: 800;
+            font-size: 240px;
             color: #ffe7b0;
+            font-family: sans-serif;
 
             text-shadow:
-                0 0 20px rgba(255, 220, 140, 0.9),
-                0 0 50px rgba(255, 180, 80, 0.7),
-                0 0 120px rgba(255, 120, 40, 0.4);
+                0 0 20px rgba(241, 239, 236, 0.955);
 
             animation: zoomBeat 1s infinite ease-in-out;
         }
@@ -64,11 +51,7 @@
 
 @keyframes zoomBeat {
     0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.12);
+        transform: scale(0.2);
     }
 
     100% {

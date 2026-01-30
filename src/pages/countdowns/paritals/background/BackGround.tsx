@@ -2,12 +2,12 @@ import "./BackGround.scss"
 
 import React from "react"
 
-import khung from "./../../../assets/images/khung.png"
-import phao from "./../../../assets/images/phao.png"
-import hoa from "./../../../assets/images/mai.png"
-import ngua from "./../../../assets/images/ngua.png"
+import khung from "../../../../assets/images/khung.png"
+import phao from "../../../../assets/images/phao.png"
+import hoa from "../../../../assets/images/mai.png"
+import ngua from "../../../../assets/images/ngua.png"
 
-import Boxtime from "./../../../components/Boxtime/Boxtime"
+import Boxtime from "../../../../components/Boxtime/Boxtime"
 
 interface TBackGroundProps {
     countdown: {
