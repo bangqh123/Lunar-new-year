@@ -1,0 +1,74 @@
+.final10s {
+    inset: 0;
+    display: flex;
+    z-index: 9999;
+    overflow: hidden;
+    position: absolute;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;   
+    background:
+        radial-gradient(circle at center,
+            #1b1f45 0%,
+            #0b0e24 45%,
+            #000000 100%);
+
+    .pulse-bg {
+        width: 220%;
+        height: 220%;
+        position: absolute;
+
+        background: radial-gradient(circle,
+                rgba(120, 160, 255, 0.12),
+                rgba(120, 160, 255, 0.04),
+                transparent 65%);
+        animation: pulse 2s infinite ease-in-out;
+        filter: blur(10px);
+    }
+
+    .count {
+        z-index: 2;
+        display: flex;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+
+        .count-number {
+            font-weight: 800;
+            font-size: 240px;
+            color: #ffe7b0;
+            font-family: sans-serif;
+
+            text-shadow:
+                0 0 20px rgba(241, 239, 236, 0.955);
+
+            animation: zoomBeat 1s infinite ease-in-out;
+        }
+    }
+}
+
+/* animations */
+
+@keyframes zoomBeat {
+    0% {
+        transform: scale(0.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.25;
+    }
+
+    50% {
+        opacity: 0.55;
+    }
+
+    100% {
+        opacity: 0.25;
+    }
+}

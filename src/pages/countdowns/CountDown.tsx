@@ -1,38 +1,67 @@
 import "./CountDown.scss"
 
+import BG_CTD from "./paritals/background/BackGround"
+import Final_CTD from "./paritals/finalcountdown/FinalCountDown"
+
+import { useEffect, useRef } from "react"
+import { useNavigate } from "react-router-dom"
+
 import { useCountdown } from "../../hooks/useCountdown"
 import { useCelebrateTrigger } from "../../hooks/useCelebrateTrigger"
-import { useFireworks } from "../../hooks/useFireworks"
-import { useTetAnimation } from "../../hooks/useTetAnimation"
-import { FallingItems } from "../../components/FallingItems"
 
-import Boxtime from "../../components/Boxtime/Boxtime"
-
-const TARGET_TIME = new Date("2026-01-13T13:46:12+07:00").getTime()
+const TARGET_TIME = new Date("2026-01-30T22:40:00+07:00").getTime()
 
 const CountDown = () => {
   const countdown = useCountdown(TARGET_TIME)
 
-  const { startFireworks } = useFireworks()
-  const { isActive, startAnimation } = useTetAnimation()
+  const navigate = useNavigate()
+  const redirectedRef = useRef(false)
 
   useCelebrateTrigger({
     isFinished: countdown.isFinished,
-    onFireworks: startFireworks,
-    onStartAnimation: startAnimation,
   })
+
+  const totalSeconds =
+    countdown.days * 86400 +
+    countdown.hours * 3600 +
+    countdown.minutes * 60 +
+    countdown.seconds
+
+  useEffect(() => {
+    if (countdown.isFinished && !redirectedRef.current) {
+      redirectedRef.current = true
+      navigate("/fireworks")
+    }
+  }, [countdown.isFinished, navigate])
+
+  useEffect(() => {
+    const unlockAudio = () => {
+      const synth = window.speechSynthesis
+      const utter = new SpeechSynthesisUtterance("")
+      synth.speak(utter)
+      document.removeEventListener("click", unlockAudio)
+      document.removeEventListener("keydown", unlockAudio)
+    }
+
+    document.addEventListener("click", unlockAudio)
+    document.addEventListener("keydown", unlockAudio)
+
+    return () => {
+      document.removeEventListener("click", unlockAudio)
+      document.removeEventListener("keydown", unlockAudio)
+    }
+  }, [])
+
 
   return (
     <div className="countdown">
-      {isActive && <FallingItems isActive={true} />}
-      <div className="countdown-overlay">
-        <Boxtime time={countdown.days} label="Days" />
-        <Boxtime time={countdown.hours} label="Hours" />
-        <Boxtime time={countdown.minutes} label="Minutes" />
-        <Boxtime time={countdown.seconds} label="Seconds" />
-      </div>
-    </div >
+      {totalSeconds > 10 && <BG_CTD countdown={countdown} />}
+
+      {totalSeconds <= 10 && !countdown.isFinished && (
+        <Final_CTD countdown={countdown} />
+      )}
+    </div>
   )
 }
 
-export default CountDown
+export default CountDown;
