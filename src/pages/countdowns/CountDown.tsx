@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom"
 import { useCountdown } from "../../hooks/useCountdown"
 import { useCelebrateTrigger } from "../../hooks/useCelebrateTrigger"
 
-const TARGET_TIME = new Date("2026-01-30T22:40:00+07:00").getTime()
+const TARGET_TIME = new Date("2026-02-17T00:00:00+07:00").getTime()
 
 const CountDown = () => {
   const countdown = useCountdown(TARGET_TIME)

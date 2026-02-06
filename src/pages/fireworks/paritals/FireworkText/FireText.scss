@@ -1,0 +1,83 @@
+.newyear-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    animation: fadeIn 1.5s ease forwards;
+
+    .title {
+        font-family: "Pacifico", cursive;
+        font-size: 48px;
+        color: #ffd54a;
+        margin-bottom: 10px;
+
+        opacity: 0;
+        animation: slideDown 1.2s ease forwards;
+        animation-delay: 0.4s;
+    }
+
+    .year {
+        font-family: "Playfair Display", serif;
+        font-size: 160px;
+        color: #fff4c1;
+
+        opacity: 0;
+        transform: scale(0.8);
+        text-shadow: 0 0 20px rgba(255, 215, 100, 0.6);
+
+        animation: zoomGlow 1.5s ease forwards;
+        animation-delay: 0.6s;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomGlow {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+        text-shadow: 0 0 0 rgba(255, 215, 100, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 0 30px rgba(255, 215, 100, 0.8);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(255, 165, 0, 0.9);
+    }
+}
