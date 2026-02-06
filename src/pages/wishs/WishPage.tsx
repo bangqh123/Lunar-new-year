@@ -1,8 +1,10 @@
-import "./WishPage.css"
+import "./WishPage.scss"
 
 const WishPage = () => {
     return(
-        <div>sd</div>
+        <div className="wishpage">
+            <span>New Year's greetings page</span>
+        </div>
     )    
 }
 

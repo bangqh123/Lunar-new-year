@@ -9,3 +9,29 @@
   position: absolute;
   inset: 0;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseBtn {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 180, 80, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(255, 180, 80, 1);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(255, 180, 80, 0.6);
+  }
+}
